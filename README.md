@@ -24,10 +24,13 @@ python -m firescrape setup_project <project-name>
 
 The following repository will then be created
 
-├── .gitignore
-├── environment.yml 
-├── README.md 
-└── batch_scripts
-    ├── launch_lab.bat
-    ├── setup_env.bat
+<pre>
+project-name
+├── .gitignore  
+├── environment.yml  
+├── README.md  
+└── batch_scripts  
+    ├── launch_lab.bat  
+    ├── setup_env.bat  
     └── update_env.bat
+</pre>
