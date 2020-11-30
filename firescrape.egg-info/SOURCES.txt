@@ -1,0 +1,9 @@
+README.md
+setup.py
+firescrape/__init__.py
+firescrape/__main__.py
+firescrape/constructors.py
+firescrape.egg-info/PKG-INFO
+firescrape.egg-info/SOURCES.txt
+firescrape.egg-info/dependency_links.txt
+firescrape.egg-info/top_level.txt

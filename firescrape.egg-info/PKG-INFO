@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: firescrape
+Version: 0.0.1
+Summary: Fire-Scrape is a Python library for creating scraping projects
+Home-page: https://github.com/AyrtonB/Fire-Scrape
+Author: Ayrton Bourn
+Author-email: ayrton@futureenergy.associates
+License: UNKNOWN
+Description: # Fire-Scrape
+        
+        CLI for creating web-scraping projects
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown

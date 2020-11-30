@@ -1,0 +1,17 @@
+name: FireScrape
+
+channels:
+  - conda-forge
+  
+dependencies:
+  - python=3.7
+  - pip
+  - pandas
+  - matplotlib
+  - jupyterlab
+  - seaborn
+  - fire
+  
+  - pip:
+      - ipypb
+      - feautils
