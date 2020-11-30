@@ -13,5 +13,6 @@ dependencies:
   - fire
   
   - pip:
+      - -e .
       - ipypb
       - feautils

@@ -9,7 +9,6 @@ License: UNKNOWN
 Description: # Fire-Scrape
         
         CLI for creating web-scraping projects
-        
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Requires-Python: >=3.7
