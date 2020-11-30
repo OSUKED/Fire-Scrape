@@ -2,6 +2,7 @@
 Imports
 """
 import os
+import git
 import pandas as pd
 
 
@@ -18,8 +19,8 @@ def write_string_to_file(string, filepath):
 """
 File Constructors
 """
-def format_lists(list_a, list_b=None):
-    if list_b is not None:
+def format_lists(list_a, list_b=[]):
+    if list_b != []:
         return sorted(list(set(list_a) + set(list_b)))
     else:
         return sorted(list(set(list_a)))
@@ -41,7 +42,7 @@ def construct_yml_str(env_name, env_yml_section_to_items, env_yml_section_to_off
         
     return yml_str
     
-def create_environment_yml(env_name, python_version='3.7', dependencies=None, pip=None, channels=None):
+def create_environment_yml(env_name, python_version='3.7', dependencies=[], pip=[], channels=[]):
     # Defining section item defaults
     default_channels = ['conda-forge']
     default_dependencies = [f'python={python_version}', 'pip', 'pandas', 'matplotlib', 'jupyterlab', 'seaborn', 'lxml', 'xmltodict', 'beautifulsoup4', 'html5lib', 'python-dotenv']
@@ -126,11 +127,23 @@ def create_batch_scripts(env_name, batch_scripts_dir='batch_scripts'):
         
     return 
 
+def create_dot_env(include_env_vars):
+    if include_env_vars == True:
+        write_string_to_file('', '.env')
+        
+    return
+
 
 """
 Set-Up Wrapper
 """
-def setup_project(proj_name, proj_path='.', env_name=None, include_env_vars=False, python_version='3.7', dependencies=None, pip=None, channels=None):
+def setup_project(proj_name, proj_path='.', env_name=None, include_env_vars=False, python_version='3.7', dependencies=[], pip=[], channels=[]):
+    # Cleaning names
+    proj_name = proj_name.replace(' ', '-')
+    
+    if env_name is None:
+        env_name = proj_name.replace('-', '').replace(' ', '')
+        
     # Creating and entering project directory
     proj_dir = f'{proj_path}/{proj_name}'
     
@@ -139,26 +152,17 @@ def setup_project(proj_name, proj_path='.', env_name=None, include_env_vars=Fals
         
     os.chdir(proj_dir)
     
-    # Creating environment.yml
-    if env_name is None:
-        env_name = proj_name.replace('-', '').replace(' ', '')
-        
+    # Creating files     
     create_environment_yml(env_name, python_version=python_version, dependencies=dependencies, pip=pip, channels=channels)
-
-    # Creating readme.md
     create_readme_md(proj_name)
-    
-    # Creating .gitignore
     create_gitignore(include_env_vars=include_env_vars)
-    
-    # Creating .env
-    if include_env_vars == True:
-        write_string_to_file('', '.env')
-        
-    # create batch scripts
+    create_dot_env(include_env_vars)
     create_batch_scripts(env_name)
     
     # Returning to original directory
     os.chdir('/'.join(proj_dir.count('/')*['..']))
+    
+    # Initialising it as a Git repo
+    git.Repo.init(proj_dir)
     
     return

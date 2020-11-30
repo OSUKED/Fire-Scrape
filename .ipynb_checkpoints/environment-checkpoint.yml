@@ -10,9 +10,11 @@ dependencies:
   - matplotlib
   - jupyterlab
   - seaborn
+  - yaml
   - fire
   
   - pip:
       - -e .
+      - gitpython
       - ipypb
       - feautils
